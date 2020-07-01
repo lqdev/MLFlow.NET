@@ -7,6 +7,7 @@ using MLFlow.NET.Lib.Contract;
 using MLFlow.NET.Lib.Helpers;
 using MLFlow.NET.Lib.Model;
 using MLFlow.NET.Lib.Model.Responses.Experiment;
+using MLFlow.NET.Lib.Model.Responses.RegisteredModel;
 using MLFlow.NET.Lib.Model.Responses.Run;
 
 namespace MLFlow.NET.Lib.Services
@@ -54,6 +55,22 @@ namespace MLFlow.NET.Lib.Services
         public async Task<RunResponse> CreateRun(CreateRunRequest request)
         {
             var response = await _httpService.Post<RunResponse, CreateRunRequest>(_getPath(MLFlowAPI.Runs.BasePath, MLFlowAPI.Runs.Create), request);
+            return response;
+        }
+
+        public async Task<CreateModelResponse> CreateRegisteredModel(string modelName)
+        {
+            var response = await _httpService.Post<CreateModelResponse, CreateModelRequest>(
+                _getPath(MLFlowAPI.RegisteredModels.BasePath, MLFlowAPI.RegisteredModels.Create),
+                new CreateModelRequest { Name = modelName });
+            return response;
+        }
+
+        public async Task<GetModelResponse> GetRegisteredModel(string modelName)
+        {
+            var response = await _httpService.Post<GetModelResponse, GetModelRequest>(
+                _getPath(MLFlowAPI.RegisteredModels.BasePath, MLFlowAPI.RegisteredModels.Get),
+                new GetModelRequest { Name = modelName });
             return response;
         }
 

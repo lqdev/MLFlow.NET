@@ -1,4 +1,6 @@
-﻿namespace MLFlow.NET.Lib.Model
+﻿using System.Runtime.InteropServices;
+
+namespace MLFlow.NET.Lib.Model
 {
     public class MLFlowAPI
     {
@@ -19,6 +21,11 @@
             public const string LogParam = "log-parameter";
         }
 
-       
+        public class RegisteredModels
+        {
+            public const string BasePath = "registered-models";
+            public const string Create = "create";
+            public const string Get = "get";
+        }
     }
 }

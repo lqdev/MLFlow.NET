@@ -2,6 +2,7 @@
 using MLFlow.NET.Lib.Model;
 using MLFlow.NET.Lib.Model.Responses.Experiment;
 using MLFlow.NET.Lib.Model.Responses.Run;
+using MLFlow.NET.Lib.Model.Responses.RegisteredModel;
 
 namespace MLFlow.NET.Lib.Contract
 {
@@ -11,8 +12,6 @@ namespace MLFlow.NET.Lib.Contract
             string artifact_location = null);
 
         Task<RunResponse> CreateRun(CreateRunRequest request);
-
-        
 
         Task<LogMetric> LogMetric(string run_uuid,
             string key, float value, long? timeStamp = null);
@@ -26,5 +25,10 @@ namespace MLFlow.NET.Lib.Contract
         Task<CreateResponse> GetOrCreateExperiment(
             string name,
             string artifact_location = null);
+
+        // Models
+        Task<CreateModelResponse> CreateRegisteredModel(string name);
+
+        Task<GetModelResponse> GetRegisteredModel(string name);
     }
 }
